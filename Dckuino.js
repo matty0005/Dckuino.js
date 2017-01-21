@@ -17,7 +17,7 @@ var commandMap = { // Key that can be typed
   SPACE:'\' \'',
   TAB:'KEY_TAB',
   PRINTSCREEN:'206',
-  ENTER:'KEY_RETURN',
+  ENTER:'KEY_ENTER',
   RETURN:'KEY_RETURN',
   UPARROW:'KEY_UP_ARROW',
   DOWNARROW:'KEY_DOWN_ARROW',
@@ -107,7 +107,7 @@ class Dckuinojs {
     return '/*\n'
     + ' * Generated with <3 by Dckuino.js, an open source project !\n'
     + ' */\n\n'
-    + '#include "Keyboard.h"\n\n'
+    + '#include "DigiKeyboard.h"\n\n'
     + 'void typeKey(uint8_t key)\n'
     + '{\n'
     + '  Keyboard.press(key);\n'
@@ -206,7 +206,7 @@ class Dckuinojs {
           textString = textString.split('\\').join('\\\\').split('"').join('\\"');
           if (textString !== '')
           {
-            parsedOut = '  Keyboard.print("' + textString + '");\n';
+            parsedOut = '  DigiKeyboard("' + textString + '");\n';
             commandKnown = true;
           } else {
             console.error('Error: at line: ' + (i + 1) + ', STRING needs a text');
