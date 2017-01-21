@@ -206,7 +206,7 @@ class Dckuinojs {
           textString = textString.split('\\').join('\\\\').split('"').join('\\"');
           if (textString !== '')
           {
-            parsedOut = '  DigiKeyboard("' + textString + '");\n';
+            parsedOut = '  DigiKeyboard.println("' + textString + '");\n';
             commandKnown = true;
           } else {
             console.error('Error: at line: ' + (i + 1) + ', STRING needs a text');
@@ -223,7 +223,7 @@ class Dckuinojs {
 
           if (! isNaN(wordArray[0]))
           {
-            parsedOut = '  delay(' + wordArray[0] + ');\n';
+            parsedOut = '  DigiKeyboard.delay(' + wordArray[0] + ');\n';
             commandKnown = true; noDelay = true; nextNoDelay = true;
           } else {
             console.error('Error: at line: ' + (i + 1) + ', DELAY only acceptes numbers');
@@ -259,7 +259,7 @@ class Dckuinojs {
           {
             commandKnown = true;
             // Replace the DuckyScript key by the Arduino key name
-            parsedOut = '  typeKey(\'' + keyMap[wordArray[0]] + '\');\n';
+            parsedOut = '  DigiKeyboard.sendKeyStroke(\'' + keyMap[wordArray[0]] + '\');\n';
           } else {
             console.error('Error: Unknown letter \'' + wordArray[0] +'\' at line: ' + (i + 1));
             return;
@@ -345,17 +345,17 @@ class Dckuinojs {
               commandKnown = true;
               releaseAll = true;
 
-              parsedOut += '  Keyboard.press(' + comboMap[wordArray[0]] + ');\n';
+              parsedOut += '  DigiKeyboard.sendKeyStroke(' + comboMap[wordArray[0]] + ');\n';
             }else if (commandMap[wordArray[0]] !== undefined) {
               commandKnown = true;
               releaseAll = true;
 
-              parsedOut += '  Keyboard.press(' + commandMap[wordArray[0]] + ');\n';
+              parsedOut += '  DigiKeyboard.sendKeyStroke(' + commandMap[wordArray[0]] + ');\n';
             }else if (keyMap[wordArray[0]] !== undefined) {
               commandKnown = true;
               releaseAll = true;
 
-              parsedOut += '  Keyboard.press(\'' + keyMap[wordArray[0]] + '\');\n';
+              parsedOut += '  DigiKeyboard.sendKeyStroke(\'' + keyMap[wordArray[0]] + '\');\n';
             }else {
               commandKnown = false;
               break;
